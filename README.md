@@ -35,7 +35,7 @@ You'll need to create a new node server. Open a new terminal within the project 
 
 
 ### Configure The Backend Endpoint
-Ionic uses enviornment files located in `./src/enviornments/enviornment.*.ts` to load configuration variables at runtime. By default `environment.ts` is used for development and `enviornment.prod.ts` is used for produciton. The `apiHost` variable should be set to your server url either locally or in the cloud.
+Ionic uses environment files located in `./src/environments/environment.*.ts` to load configuration variables at runtime. By default `environment.ts` is used for development and `environment.prod.ts` is used for produciton. The `apiHost` variable should be set to your server url either locally or in the cloud.
 
 ***
 ### Running the Development Server
