@@ -4,7 +4,7 @@ Udagram is a simple cloud application developed alongside the Udacity Cloud Engi
 
 The project is split into three parts:
 1. [The Simple Frontend](/udacity-c3-frontend)
-A basic Ionic client web application which consumes the RestAPI Backend. 
+A basic Ionic client web application which consumes the RestAPI Backend.
 2. [The RestAPI Feed Backend](/udacity-c3-restapi-feed), a Node-Express feed microservice.
 3. [The RestAPI User Backend](/udacity-c3-restapi-user), a Node-Express user microservice.
 
@@ -43,3 +43,10 @@ Ionic CLI can build the frontend into static HTML/CSS/JavaScript files. These fi
 ionic build
 ```
 ***
+
+Environment variables:
+Putting the .env file in /udacity-c3-deployment/docker
+Setting up the docker containers in Ubuntu
+```
+sudo docker-compose -f docker-compose-build.yaml --env-file ./.env build --parallel
+```
