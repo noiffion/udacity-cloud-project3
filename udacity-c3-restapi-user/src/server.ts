@@ -6,8 +6,6 @@ import { IndexRouter } from './controllers/v0/index.router';
 import { V0MODELS } from './controllers/v0/model.index';
 import { config } from './config/config';
 
-const c = config.dev;
-
 (async () => {
   try {
     await sequelize.authenticate();
@@ -25,7 +23,7 @@ const c = config.dev;
 
   //CORS Should be restricted
   app.use(function(req, res, next) {
-    res.header('Access-Control-Allow-Origin', c.url);
+    res.header('Access-Control-Allow-Origin', config.frontUrl);
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
     next();
   });
@@ -39,7 +37,7 @@ const c = config.dev;
 
   // Start the Server
   app.listen(PORT, () => {
-    console.info(`server running ` + c.url);
+    console.info(`server running on http://localhost:${PORT}`);
     console.info(`press CTRL+C to stop server`);
   });
 })();
