@@ -9,7 +9,7 @@ import { config } from './config/config';
 (async () => {
   try {
     await sequelize.authenticate();
-    sequelize.addModels(V0MODELS)
+    sequelize.addModels(V0MODELS);
     sequelize.sync();
     console.info('Connected to Postgres.');
   } catch (error) {
@@ -22,13 +22,16 @@ import { config } from './config/config';
   app.use(bodyParser.json());
 
   //CORS Should be restricted
-  app.use(function(req, res, next) {
+  app.use(function (req, res, next) {
     res.header('Access-Control-Allow-Origin', config.frontUrl);
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+    res.header(
+      'Access-Control-Allow-Headers',
+      'Origin, X-Requested-With, Content-Type, Accept, Authorization'
+    );
     next();
   });
 
-  app.use('/api/v0/', IndexRouter)
+  app.use('/api/v0/', IndexRouter);
 
   // Root URI call
   app.get('/', async (req, res) => {

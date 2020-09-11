@@ -2,15 +2,14 @@ import AWS = require('aws-sdk');
 import { config } from './config/config';
 
 //Configure AWS
-var credentials = new AWS.SharedIniFileCredentials({profile: 'default'});
+var credentials = new AWS.SharedIniFileCredentials({ profile: 'default' });
 AWS.config.credentials = credentials;
 
 export const s3 = new AWS.S3({
   signatureVersion: 'v4',
   region: config.awsRegion,
-  params: { Bucket: config.awsMediaBucket }
+  params: { Bucket: config.awsMediaBucket },
 });
-
 
 /* getGetSignedUrl generates an aws signed url to retreive an item
  * @Params
@@ -18,14 +17,14 @@ export const s3 = new AWS.S3({
  * @Returns:
  *    a url as a string
  */
-export function getGetSignedUrl( key: string ): string{
-  const signedUrlExpireSeconds = 60 * 5
-    const url = s3.getSignedUrl('getObject', {
-        Bucket: config.awsMediaBucket,
-        Key: key,
-        Expires: signedUrlExpireSeconds
-      });
-    return url;
+export function getGetSignedUrl(key: string): string {
+  const signedUrlExpireSeconds = 60 * 5;
+  const url = s3.getSignedUrl('getObject', {
+    Bucket: config.awsMediaBucket,
+    Key: key,
+    Expires: signedUrlExpireSeconds,
+  });
+  return url;
 }
 
 /* getPutSignedUrl generates an aws signed url to put an item
@@ -34,12 +33,12 @@ export function getGetSignedUrl( key: string ): string{
  * @Returns:
  *    a url as a string
  */
-export function getPutSignedUrl( key: string ){
-  const signedUrlExpireSeconds = 60 * 5
+export function getPutSignedUrl(key: string) {
+  const signedUrlExpireSeconds = 60 * 5;
   const url = s3.getSignedUrl('putObject', {
     Bucket: config.awsMediaBucket,
     Key: key,
-    Expires: signedUrlExpireSeconds
+    Expires: signedUrlExpireSeconds,
   });
   return url;
 }

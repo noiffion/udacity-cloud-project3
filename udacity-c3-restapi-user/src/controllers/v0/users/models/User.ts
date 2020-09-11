@@ -2,7 +2,6 @@ import { Table, Column, Model, PrimaryKey, CreatedAt, UpdatedAt } from 'sequeliz
 
 @Table
 export class User extends Model<User> {
-
   @PrimaryKey
   @Column
   public email!: string;
@@ -20,7 +19,7 @@ export class User extends Model<User> {
 
   short() {
     return {
-      email: this.email
-    }
+      email: this.email,
+    };
   }
 }
