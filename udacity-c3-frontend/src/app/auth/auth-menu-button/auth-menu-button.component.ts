@@ -12,11 +12,7 @@ import { AuthRegisterComponent } from '../auth-register/auth-register.component'
   styleUrls: ['./auth-menu-button.component.scss'],
 })
 export class AuthMenuButtonComponent implements OnInit {
-
-  constructor(
-    private auth: AuthService,
-    public modalController: ModalController
-    ) {}
+  constructor(private auth: AuthService, public modalController: ModalController) {}
 
   async presentmodal(ev: any) {
     const modal = await this.modalController.create({
@@ -44,5 +40,4 @@ export class AuthMenuButtonComponent implements OnInit {
   }
 
   ngOnInit() {}
-
 }

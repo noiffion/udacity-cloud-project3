@@ -5,13 +5,12 @@ import { FeedItem } from '../models/feed-item.model';
   selector: 'app-feed-item',
   templateUrl: './feed-item.component.html',
   styleUrls: ['./feed-item.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FeedItemComponent implements OnInit {
   @Input() feedItem: FeedItem;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {}
-
 }

@@ -9,7 +9,6 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
-
   let statusBarSpy, splashScreenSpy, platformReadySpy, platformSpy;
 
   beforeEach(async(() => {
@@ -26,7 +25,7 @@ describe('AppComponent', () => {
         { provide: SplashScreen, useValue: splashScreenSpy },
         { provide: Platform, useValue: platformSpy },
       ],
-      imports: [ RouterTestingModule.withRoutes([])],
+      imports: [RouterTestingModule.withRoutes([])],
     }).compileComponents();
   }));
 
@@ -77,5 +76,4 @@ describe('AppComponent', () => {
     const menubar = app.querySelectorAll('app-menubar');
     expect(menubar.length).toEqual(1);
   });
-
 });

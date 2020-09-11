@@ -10,11 +10,10 @@ describe('AuthRegisterPage', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ ReactiveFormsModule ],
-      declarations: [ AuthRegisterComponent ],
+      imports: [ReactiveFormsModule],
+      declarations: [AuthRegisterComponent],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-    })
-    .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {

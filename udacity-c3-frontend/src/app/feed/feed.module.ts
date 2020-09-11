@@ -12,18 +12,18 @@ import { FeedUploadButtonComponent } from './feed-upload/feed-upload-button/feed
 import { FeedProviderService } from './services/feed.provider.service';
 
 const entryComponents = [FeedUploadComponent];
-const components = [FeedListComponent, FeedItemComponent, FeedUploadComponent, FeedUploadButtonComponent];
+const components = [
+  FeedListComponent,
+  FeedItemComponent,
+  FeedUploadComponent,
+  FeedUploadButtonComponent,
+];
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    ReactiveFormsModule
-  ],
+  imports: [CommonModule, FormsModule, IonicModule, ReactiveFormsModule],
   declarations: components,
   exports: components,
   entryComponents: entryComponents,
-  providers: [FeedProviderService]
+  providers: [FeedProviderService],
 })
 export class FeedModule {}

@@ -9,8 +9,7 @@ import { environment } from '../../environments/environment';
 export class MenubarComponent implements OnInit {
   public appName = environment.appName;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {}
-
 }

@@ -5,11 +5,9 @@ import { ApiService } from './api.service';
 const components = [];
 
 @NgModule({
-  imports: [
-    HttpClientModule,
-  ],
+  imports: [HttpClientModule],
   declarations: components,
   exports: components,
-  providers: []
+  providers: [],
 })
 export class ApiModule {}

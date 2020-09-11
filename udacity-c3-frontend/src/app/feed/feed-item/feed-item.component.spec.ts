@@ -11,10 +11,9 @@ describe('FeedItemComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FeedItemComponent ],
+      declarations: [FeedItemComponent],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-    })
-    .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -38,7 +37,7 @@ describe('FeedItemComponent', () => {
   it('should display the caption', () => {
     const app = fixture.nativeElement;
     const paragraphs = app.querySelectorAll('p');
-    expect(([].slice.call(paragraphs)).map((x) => x.innerText)).toContain(feedItemMocks[0].caption);
+    expect([].slice.call(paragraphs).map((x) => x.innerText)).toContain(feedItemMocks[0].caption);
   });
 
   // it('should open a modal when clicked', () => {
