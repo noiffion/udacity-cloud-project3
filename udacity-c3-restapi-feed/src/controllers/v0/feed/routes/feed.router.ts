@@ -69,7 +69,6 @@ router.post('/', requireAuth, async (req: Request, res: Response) => {
   if (!caption) {
     return res.status(400).send({ message: 'Caption is required or malformed' });
   }
-
   // check Filename is valid
   if (!fileName) {
     return res.status(400).send({ message: 'File url is required' });
@@ -79,9 +78,7 @@ router.post('/', requireAuth, async (req: Request, res: Response) => {
     caption: caption,
     url: fileName,
   });
-
   const saved_item = await item.save();
-
   saved_item.url = AWS.getGetSignedUrl(saved_item.url);
   res.status(201).send(saved_item);
 });
