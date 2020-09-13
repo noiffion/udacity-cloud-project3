@@ -1,4 +1,5 @@
-# Udagram Image Filtering App - Monolith to Microservice
+# Udagram Image Filtering Application
+## Monolith to Microservice
 
 Udagram is a simple cloud application developed alongside the Udacity Cloud Engineering Nanodegree. It allows users to register and log into a web client, post photos to the feed, and process photos using an image filtering microservice.
 
@@ -8,45 +9,95 @@ A basic Ionic client web application which consumes the RestAPI Backend.
 2. [The RestAPI Feed Backend](/udacity-c3-restapi-feed), a Node-Express feed microservice.
 3. [The RestAPI User Backend](/udacity-c3-restapi-user), a Node-Express user microservice.
 
-## Getting Setup
+Getting Started
 
-> _tip_: this frontend is designed to work with the RestAPI backends). It is recommended you stand up the backend first, test using Postman, and then the frontend should integrate.
+    Tip: it's recommended that you start with getting the backend API running since the frontend web application depends on the API.
 
-### Installing Node and NPM
-This project depends on Nodejs and Node Package Manager (NPM). Before continuing, you must download and install Node (NPM is included) from [https://nodejs.com/en/download](https://nodejs.org/en/download/).
+Prerequisites
 
-### Installing Ionic Cli
-The Ionic Command Line Interface is required to serve and build the frontend. Instructions for installing the CLI can be found in the [Ionic Framework Docs](https://ionicframework.com/docs/installation/cli).
-
-### Installing project dependencies
-
-This project uses NPM to manage software dependencies. NPM Relies on the package.json file located in the root of this repository. After cloning, open your terminal and run:
-```bash
-npm install
-```
->_tip_: **npm i** is shorthand for **npm install**
-
-### Configure The Backend Endpoint
-Ionic uses environment files located in `./src/environments/environment.*.ts` to load configuration variables at runtime. By default `environment.ts` is used for development and `environment.prod.ts` is used for produciton. The `apiHost` variable should be set to your server url either locally or in the cloud.
+  1) Node (LTS version) and Node Package Manager (NPM). Before continuing, you must download and install Node (NPM is included) from [https://nodejs.com/en/download](https://nodejs.org/en/download/).
+  2) The Ionic Command Line Interface. Instructions for installing the CLI can be found in the [Ionic Framework Docs](https://ionicframework.com/docs/installation/cli).
+  5) Database: Create a PostgreSQL database either locally or on AWS RDS. Config values for shell / environment variables should be prefixed with POSTGRES_.
+  4) S3 Create an AWS S3 bucket. Config values for shell / environment variables should be prefixed with AWS_.
+  5) Environment variables mentioned above will need to be set in udacity-c3-deployment/docker/.env. These environment variables include database and S3 connection details. (See 'Setup Docker Environment' section).
 
 ***
-### Running the Development Server
-Ionic CLI provides an easy to use development server to run and autoreload the frontend. This allows you to make quick changes and see them in real time in your browser. To run the development server, open terminal and run:
 
-```bash
-ionic serve
-```
+## Travis
+### Set up Travis
+The CI tool used for the project is TravisCI (you need to connect your repo to Travis at its website).
+Add .travis.yml file with the appropriate settings (after each commit to the 'main' branch a build process start automatically).
 
-### Building the Static Frontend Files
-Ionic CLI can build the frontend into static HTML/CSS/JavaScript files. These files can be uploaded to a host to be consumed by users on the web. Build artifacts are located in `./www`. To build from source, open terminal and run:
-```bash
-ionic build
-```
 ***
 
-Environment variables:
-Putting the .env file in /udacity-c3-deployment/docker
-Setting up the docker containers in Ubuntu
+## Docker
+### Set up Docker Environment
+
+You'll need to install docker https://docs.docker.com/install/. Open a new terminal within the project directory (in the udacity-c3-deployment folder):
+
 ```
-sudo docker-compose -f docker-compose-build.yaml --env-file ./.env build --parallel
+cd udacity-c3-deployment
+```
+The following shell variables need to be set (in a .env file in the folder above with the appropriate values).
+```
+PORT
+POSTGRES_USERNAME
+POSTGRES_PASSWORD
+POSTGRES_HOST
+POSTGRES_DB
+AWS_BUCKET
+AWS_REGION
+AWS_PROFILE
+AWS_ACCESS_KEY
+AWS_SECRET_KEY
+JWT_SECRET
+FRONT_URL
+```
+Build the images:
+```
+docker-compose -f docker-compose-build.yaml build --parallel
+```
+Push the images:
+```
+docker logout
+docker login
+docker-compose -f docker-compose-build.yaml push
+```
+Run the containers:
+```
+docker-compose up
+```
+Stop the containers:
+```
+docker-compose stop
+```
+
+On a Linux system each of the docker commands above should be run as root (e.g. sudo docker-compose up).
+
+
+Docker images
+
+***
+## Kubernetes
+### Deploy to Kubernetes cluster
+
+Set the correct values in env-secret.yaml and env-configmap.yaml files.
+Go the folder udacity-c3-deployment/k8s and run the following commands in the order below.
+```
+kubectl apply -f env-secret.yaml
+kubectl apply -f env-configmap.yaml
+
+kubectl apply -f frontend-deployment.yaml
+kubectl apply -f frontend-service.yaml
+
+kubectl apply -f backend-feed-deployment.yaml
+kubectl apply -f backend-feed-service.yaml
+
+kubectl apply -f backend-user-deployment.yaml
+kubectl apply -f backend-user-service.yaml
+
+kubectl apply -f reverseproxy-deployment.yaml
+kubectl apply -f reverseproxy-service.yaml
+
+kubectl get all
 ```
