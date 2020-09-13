@@ -12,22 +12,22 @@ spec:
         service: backend-feed
     spec:
       containers:
-      - image: scheele/udacity-restapi-feed
+      - image: noiffion/udacity-restapi-feed
         name: backend-feed
-        imagePullPolicy: Always  
+        imagePullPolicy: Always
         resources:
           requests:
             memory: "64Mi"
             cpu: "250m"
           limits:
             memory: "1024Mi"
-            cpu: "500m"                  
+            cpu: "500m"
         env:
-        - name: URL
+        - name: FRONT_URL
           valueFrom:
             configMapKeyRef:
               name: env-config
-              key: URL
+              key: FRONT_URL
         - name: AWS_BUCKET
           valueFrom:
             configMapKeyRef:
@@ -48,32 +48,34 @@ spec:
             configMapKeyRef:
               name: env-config
               key: JWT_SECRET
-        - name: POSTGRESS_DB
+        - name: POSTGRES_DB
           valueFrom:
             configMapKeyRef:
               name: env-config
-              key: POSTGRESS_DB
-        - name: POSTGRESS_HOST
+              key: POSTGRES_DB
+        - name: POSTGRES_HOST
           valueFrom:
             configMapKeyRef:
               name: env-config
-              key: POSTGRESS_HOST
-        - name: POSTGRESS_PASSWORD
+              key: POSTGRES_HOST
+        - name: POSTGRES_PASSWORD
           valueFrom:
             secretKeyRef:
               name: env-secret
-              key: POSTGRESS_PASSWORD
-        - name: POSTGRESS_USERNAME
+              key: POSTGRES_PASSWORD
+        - name: POSTGRES_USERNAME
           valueFrom:
             secretKeyRef:
               name: env-secret
-              key: POSTGRESS_USERNAME      
-        volumeMounts:
-        - name: aws-secret
-          mountPath: "/root/.aws/"
-          readOnly: true        
+              key: POSTGRES_USERNAME
+        - name: AWS_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              name: env-secret
+              key: AWS_ACCESS_KEY
+        - name: AWS_SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name: env-secret
+              key: AWS_SECRET_KEY
       restartPolicy: Always
-      volumes:
-      - name: aws-secret
-        secret:
-          secretName: aws-secret       
