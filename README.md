@@ -89,7 +89,7 @@ The public [DockerHub](https://hub.docker.com/u/noiffion) images:
 ## Kubernetes
 ### Deploy to Kubernetes cluster
 
-You'll need to set up a [EKS cluster](https://docs.aws.amazon.com/eks/latest/userguide/clusters.html) and a corresponding node group.
+You'll need to set up an [EKS cluster](https://docs.aws.amazon.com/eks/latest/userguide/clusters.html) and a corresponding node group.
 
 You'll need to install [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/) and [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html).
 An EKS cluster with proper node groups must be set up at AWS.
@@ -100,7 +100,7 @@ aws eks --region eu-central-1 update-kubeconfig --name <project_name>
 ```
 
 Set the correct values in env-secret.yaml and env-configmap.yaml files.
-Go the folder udacity-c3-deployment/k8s and run the following commands in the order below.
+Go to the folder -> udacity-c3-deployment/k8s and run the following commands in the order below.
 ```
 kubectl apply -f env-secret.yaml
 kubectl apply -f env-configmap.yaml
@@ -118,7 +118,7 @@ kubectl apply -f reverseproxy-deployment.yaml
 kubectl apply -f reverseproxy-service.yaml
 ```
 
-Verify that every container deployed correctly, the services have been set up and all pods are running:
+Verify that every container deployed correctly, the services have been set up, and all pods are running:
 ```
 kubectl get all
 ```
