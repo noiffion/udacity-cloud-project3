@@ -21,6 +21,6 @@ services:
     env_file:
       - .env
   frontend:
-    image: noiffion/udacity-frontend:local
+    image: noiffion/udacity-frontend
     ports:
       - "8100:80"
