@@ -1,4 +1,7 @@
 # Udagram Image Filtering Application
+
+[![Build Status](https://travis-ci.com/noiffion/udacity-cloud-project3.svg?branch=main)](https://travis-ci.com/github/noiffion/udacity-cloud-project3)
+
 ## Monolith to Microservice
 
 Udagram is a simple cloud application developed alongside the Udacity Cloud Engineering Nanodegree. It allows users to register and log into a web client, post photos to the feed, and process photos using an image filtering microservice.
@@ -75,7 +78,7 @@ docker-compose stop
 On a Linux system each of the docker commands above should be run as root (e.g. sudo docker-compose up).
 
 
-The [DockerHub](https://hub.docker.com/u/noiffion) images:
+The public [DockerHub](https://hub.docker.com/u/noiffion) images:
 - [frontend](https://hub.docker.com/r/noiffion/udacity-frontend)
 - [restapi-feed](https://hub.docker.com/r/noiffion/udacity-restapi-feed)
 - [restapi-user](https://hub.docker.com/r/noiffion/udacity-restapi-user)
@@ -89,6 +92,7 @@ The [DockerHub](https://hub.docker.com/u/noiffion) images:
 You'll need to set up a [EKS cluster](https://docs.aws.amazon.com/eks/latest/userguide/clusters.html) and a corresponding node group.
 
 You'll need to install [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/) and [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html).
+An EKS cluster with proper node groups must be set up at AWS.
 
 Connect the kubernetes cluster created on AWS to kubectl:
 ```
