@@ -36,11 +36,6 @@ spec:
             configMapKeyRef:
               name: env-config
               key: FRONT_URL
-        - name: JWT_SECRET
-          valueFrom:
-            configMapKeyRef:
-              name: env-config
-              key: JWT_SECRET
         - name: POSTGRES_DB
           valueFrom:
             configMapKeyRef:
@@ -61,6 +56,11 @@ spec:
             secretKeyRef:
               name: env-secret
               key: POSTGRES_USERNAME
+        - name: JWT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: env-secret
+              key: JWT_SECRET
       restartPolicy: Always
 
 

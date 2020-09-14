@@ -25,10 +25,10 @@ spec:
         imagePullPolicy: Always
         resources:
           requests:
-            memory: "64Mi"
+            memory: "128Mi"
             cpu: "250m"
           limits:
-            memory: "1024Mi"
+            memory: "2048Mi"
             cpu: "500m"
         env:
         - name: FRONT_URL
@@ -51,11 +51,6 @@ spec:
             configMapKeyRef:
               name: env-config
               key: AWS_REGION
-        - name: JWT_SECRET
-          valueFrom:
-            configMapKeyRef:
-              name: env-config
-              key: JWT_SECRET
         - name: POSTGRES_DB
           valueFrom:
             configMapKeyRef:
@@ -76,6 +71,11 @@ spec:
             secretKeyRef:
               name: env-secret
               key: POSTGRES_USERNAME
+        - name: JWT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: env-secret
+              key: JWT_SECRET
         - name: AWS_ACCESS_KEY
           valueFrom:
             secretKeyRef:
