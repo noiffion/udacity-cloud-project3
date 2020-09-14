@@ -38,7 +38,7 @@ You'll need to install [Docker](https://docs.docker.com/install/). Open a new te
 ```
 cd udacity-c3-deployment
 ```
-The following shell variables need to be set (in a .env file in the folder above with the appropriate values).
+The following shell variables need to be set (in a .env file in the folder above with the appropriate values):
 ```
 PORT
 POSTGRES_USERNAME
@@ -82,8 +82,11 @@ The [DockerHub](https://hub.docker.com/u/noiffion) images:
 - [reverseproxy](https://hub.docker.com/r/noiffion/reverseproxy)
 
 ***
+
 ## Kubernetes
 ### Deploy to Kubernetes cluster
+
+You'll need to set up a [EKS cluster](https://docs.aws.amazon.com/eks/latest/userguide/clusters.html) and a corresponding node group.
 
 You'll need to install [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/) and [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html).
 
