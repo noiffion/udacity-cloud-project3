@@ -33,7 +33,7 @@ Add .travis.yml file with the appropriate settings (after each commit to the 'ma
 ## Docker
 ### Set up Docker Environment
 
-You'll need to install docker https://docs.docker.com/install/. Open a new terminal within the project directory (in the udacity-c3-deployment folder):
+You'll need to install [Docker](https://docs.docker.com/install/). Open a new terminal within the project directory (in the udacity-c3-deployment folder):
 
 ```
 cd udacity-c3-deployment
@@ -75,11 +75,22 @@ docker-compose stop
 On a Linux system each of the docker commands above should be run as root (e.g. sudo docker-compose up).
 
 
-Docker images
+The [DockerHub](https://hub.docker.com/u/noiffion) images:
+- [frontend](https://hub.docker.com/r/noiffion/udacity-frontend)
+- [restapi-feed](https://hub.docker.com/r/noiffion/udacity-restapi-feed)
+- [restapi-user](https://hub.docker.com/r/noiffion/udacity-restapi-user)
+- [reverseproxy](https://hub.docker.com/r/noiffion/reverseproxy)
 
 ***
 ## Kubernetes
 ### Deploy to Kubernetes cluster
+
+You'll need to install [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/) and [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html).
+
+Connect the kubernetes cluster created on AWS to kubectl:
+```
+aws eks --region eu-central-1 update-kubeconfig --name <project_name>
+```
 
 Set the correct values in env-secret.yaml and env-configmap.yaml files.
 Go the folder udacity-c3-deployment/k8s and run the following commands in the order below.
@@ -98,6 +109,9 @@ kubectl apply -f backend-user-service.yaml
 
 kubectl apply -f reverseproxy-deployment.yaml
 kubectl apply -f reverseproxy-service.yaml
+```
 
+Verify that every container deployed correctly, the services have been set up and all pods are running:
+```
 kubectl get all
 ```
