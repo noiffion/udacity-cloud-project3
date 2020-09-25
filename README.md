@@ -20,7 +20,7 @@ Prerequisites
 
   1) Node (LTS version) and Node Package Manager (NPM). Before continuing, you must download and install Node (NPM is included) from [https://nodejs.com/en/download](https://nodejs.org/en/download/).
   2) The Ionic Command Line Interface. Instructions for installing the CLI can be found in the [Ionic Framework Docs](https://ionicframework.com/docs/installation/cli).
-  5) Database: Create a PostgreSQL database either locally or on AWS RDS. Config values for shell / environment variables should be prefixed with POSTGRES_.
+  3) Database: Create a PostgreSQL database either locally or on AWS RDS. Config values for shell / environment variables should be prefixed with POSTGRES_.
   4) S3 Create an AWS S3 bucket. Config values for shell / environment variables should be prefixed with AWS_.
   5) Environment variables mentioned above will need to be set in udacity-c3-deployment/docker/.env. These environment variables include database and S3 connection details. (See 'Setup Docker Environment' section).
 
